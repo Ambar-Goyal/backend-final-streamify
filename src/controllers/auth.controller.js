@@ -50,12 +50,13 @@ export async function signup(req, res) {
       expiresIn: "7d",
     });
 
-    res.cookie("jwt", token, {
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true, // prevent XSS attacks,
-      sameSite: "strict", // prevent CSRF attacks
-      secure: process.env.NODE_ENV === "production",
-    });
+ res.cookie("jwt", token, {
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  httpOnly: true,
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  secure: process.env.NODE_ENV === "production",
+});
+
 
     res.status(201).json({ success: true, user: newUser });
   } catch (error) {
@@ -82,12 +83,13 @@ export async function login(req, res) {
       expiresIn: "7d",
     });
 
-    res.cookie("jwt", token, {
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true, // prevent XSS attacks,
-      sameSite: "strict", // prevent CSRF attacks
-      secure: process.env.NODE_ENV === "production",
-    });
+  res.cookie("jwt", token, {
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  httpOnly: true,
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  secure: process.env.NODE_ENV === "production",
+});
+
 
     res.status(200).json({ success: true, user });
   } catch (error) {
