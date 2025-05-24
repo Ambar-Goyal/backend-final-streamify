@@ -16,7 +16,7 @@ const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://frontend-stream-gamma.vercel.app"],
+  origin: ["http://localhost:5173", "https://frontend-stream-gamma.vercel.app", "https://frontend-stream-rho.vercel.app"],
   credentials: true,
 }));
 
