@@ -101,7 +101,10 @@ res.cookie("jwt", token, {
 }
 
 export function logout(req, res) {
-  res.clearCookie("jwt");
+  res.clearCookie("jwt", {
+    sameSite: "none",
+    secure: true,
+  });
   res.status(200).json({ success: true, message: "Logout successful" });
 }
 
